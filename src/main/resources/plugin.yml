@@ -1,0 +1,8 @@
+name: LobbySystem
+version: '${version}'
+main: net.timenation.lobbysystem.LobbySystem
+api-version: 1.18
+author: ByRaudy
+
+depend:
+  - TimeSpigotAPI
