@@ -26,23 +26,23 @@ public class InventoryManager {
         Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, () -> {
             switch (itemCount) {
                 case 0 -> {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(1, new ItemManager(Material.COMPASS).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(0, new ItemManager(Material.COMPASS).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
                     itemCount++;
                 }
                 case 1 -> {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(1, new ItemManager(Material.HONEYCOMB).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(0, new ItemManager(Material.HONEYCOMB).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
                     itemCount++;
                 }
                 case 2 -> {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(1, new ItemManager(Material.CAULDRON).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(0, new ItemManager(Material.CAULDRON).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
                     itemCount++;
                 }
                 case 3 -> {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(1, new ItemManager(Material.TOTEM_OF_UNDYING).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(0, new ItemManager(Material.TOTEM_OF_UNDYING).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
                     itemCount++;
                 }
                 case 4 -> {
-                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(1, new ItemManager(Material.END_PORTAL_FRAME).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
+                    Bukkit.getOnlinePlayers().forEach(player -> player.getInventory().setItem(0, new ItemManager(Material.END_PORTAL_FRAME).setDisplayName(I18n.format(player, "lobby.item.navigator")).build()));
                     itemCount = 0;
                 }
             }
@@ -50,11 +50,12 @@ public class InventoryManager {
     }
 
     public void setJoinInventoryToPlayer(Player player) {
-        player.getInventory().setItem(1, new ItemManager(Material.COMPASS).setDisplayName(I18n.format(player, "lobby.item.navigator")).build());
-        player.getInventory().setItem(2, new ItemManager(Material.CRIMSON_FUNGUS).setDisplayName(I18n.format(player, "lobby.item.timepass")).build());
-        player.getInventory().setItem(4, new ItemManager(Material.BARRIER).setDisplayName(I18n.format(player, "lobby.item.nogadget")).build());
-        player.getInventory().setItem(6, new ItemManager(Material.COMPARATOR).setDisplayName(I18n.format(player, "lobby.item.settings")).build());
-        player.getInventory().setItem(7, new ItemManager(Material.LIME_SHULKER_BOX).setDisplayName(I18n.format(player, "lobby.item.gadgets")).build());
+        player.getInventory().setItem(0, new ItemManager(Material.COMPASS).setDisplayName(I18n.format(player, "lobby.item.navigator")).build());
+        player.getInventory().setItem(1, new ItemManager(Material.FURNACE_MINECART).setDisplayName(I18n.format(player, "lobby.item.timepass")).build());
+        player.getInventory().setItem(3, new ItemManager(Material.RESPAWN_ANCHOR).setDisplayName(I18n.format(player, "lobby.item.badges")).build());
+        player.getInventory().setItem(5, new ItemManager(Material.BARRIER).setDisplayName(I18n.format(player, "lobby.item.nogadget")).build());
+        player.getInventory().setItem(7, new ItemManager(Material.COMPARATOR).setDisplayName(I18n.format(player, "lobby.item.settings")).build());
+        player.getInventory().setItem(8, new ItemManager(Material.BARREL).setDisplayName(I18n.format(player, "lobby.item.gadgets")).build());
     }
 
     public void openNavigatorInventory(Player player) {
