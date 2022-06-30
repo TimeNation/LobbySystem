@@ -2,7 +2,9 @@ package net.timenation.lobbysystem.listener;
 
 import net.timenation.lobbysystem.LobbySystem;
 import net.timenation.timespigotapi.TimeSpigotAPI;
+import net.timenation.timespigotapi.manager.HologramManager;
 import net.timenation.timespigotapi.manager.language.I18n;
+import net.timenation.timespigotapi.player.TimePlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
@@ -22,11 +24,11 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
         AtomicInteger count = new AtomicInteger(1);
 
-        player.teleport(new Location(Bukkit.getWorld("world"), 56.5, 20, 5.5, 90, 0));
+        player.teleport(new Location(Bukkit.getWorld("world"), 0.5, 101, 1.5));
         player.sendTitle(I18n.format(player, "title_one_top"), I18n.format(player, "title_one_bottom", (Object) TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(player.getUniqueId()).getPlayersNameWithRankColor(player.getUniqueId())));
         player.playSound(player.getLocation(), Sound.ENTITY_DOLPHIN_DEATH, 2, 1);
         player.setVelocity(player.getLocation().getDirection().add(new Vector(0, 1.5, 0)));
-        player.teleport(new Location(Bukkit.getWorld("world"), 56.5, 20, 5.5, 90, 0));
+        player.teleport(new Location(Bukkit.getWorld("world"), 0.5, 101, 1.5));
         player.playSound(player.getLocation(), Sound.BLOCK_ANVIL_LAND, 2, 2);
         player.getInventory().clear();
         LobbySystem.getInstance().getScoreboardManager().sendLobbyScoreboardToPlayer(player);

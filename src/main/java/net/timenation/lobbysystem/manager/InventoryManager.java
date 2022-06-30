@@ -6,7 +6,6 @@ import eu.thesimplecloud.api.service.ServiceState;
 import net.timenation.lobbysystem.LobbySystem;
 import net.timenation.lobbysystem.utils.Patch;
 import net.timenation.timespigotapi.TimeSpigotAPI;
-import net.timenation.timespigotapi.game.TimeGameStats;
 import net.timenation.timespigotapi.manager.ItemManager;
 import net.timenation.timespigotapi.manager.language.I18n;
 import org.bukkit.Bukkit;
@@ -54,7 +53,7 @@ public class InventoryManager {
         player.getInventory().setItem(1, new ItemManager(Material.FURNACE_MINECART).setDisplayName(I18n.format(player, "lobby.item.timepass")).build());
         player.getInventory().setItem(3, new ItemManager(Material.RESPAWN_ANCHOR).setDisplayName(I18n.format(player, "lobby.item.badges")).build());
         player.getInventory().setItem(5, new ItemManager(Material.BARRIER).setDisplayName(I18n.format(player, "lobby.item.nogadget")).build());
-        player.getInventory().setItem(7, new ItemManager(Material.COMPARATOR).setDisplayName(I18n.format(player, "lobby.item.settings")).build());
+        player.getInventory().setItem(7, new ItemManager(Material.PLAYER_HEAD).setSkullOwner(I18n.format(player, "language.skull")).setDisplayName(I18n.format(player, "lobby.item.language")).build());
         player.getInventory().setItem(8, new ItemManager(Material.BARREL).setDisplayName(I18n.format(player, "lobby.item.gadgets")).build());
     }
 
@@ -68,41 +67,9 @@ public class InventoryManager {
         inventory.setItem(23, new ItemManager(Material.LIME_BED, 1).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.bedwars")).build());
         inventory.setItem(24, new ItemManager(Material.STONE_SWORD, 1).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.1vs1")).build());
 
-        inventory.setItem(37, new ItemManager(Material.SADDLE).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.boxopening")).setCustomModleData(5).build());
-        inventory.setItem(38, new ItemManager(Material.PHANTOM_MEMBRANE).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.shop")).setCustomModleData(2).build());
+        inventory.setItem(38, new ItemManager(Material.SADDLE).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.boxopening")).setCustomModleData(5).build());
         inventory.setItem(40, new ItemManager(Material.GLISTERING_MELON_SLICE, 1).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.spawn")).build());
-        inventory.setItem(42, new ItemManager(Material.NETHERITE_SWORD, 1).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.lobbypvp")).setCustomModleData(3).build());
-        inventory.setItem(43, new ItemManager(Material.FISHING_ROD, 1).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.fishing")).build());
-
-        player.openInventory(inventory);
-        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);
-    }
-
-    public void openNPCGamesInventory(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 9 * 5, I18n.format(player, "lobby.inventory.npcgames"));
-
-        setGlassConent(inventory);
-
-        inventory.setItem(20, new ItemManager(Material.FIREWORK_ROCKET, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.item.stagebattle")).build());
-        inventory.setItem(21, new ItemManager(Material.NETHERITE_AXE, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.item.magicpvp")).setCustomModleData(6).build());
-        inventory.setItem(23, new ItemManager(Material.LIME_BED, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.item.bedwars")).build());
-        inventory.setItem(24, new ItemManager(Material.STONE_SWORD, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.item.1vs1")).build());
-
-        inventory.setItem(40, new ItemManager(Material.PAPER, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.explain")).setLore(I18n.formatLines(player, "lobby.inventory.npcgames.explain.lore")).build());
-
-        player.openInventory(inventory);
-        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);
-    }
-
-    public void openNPCGameInfoInventory(Player player, String game) {
-        Inventory inventory = Bukkit.createInventory(null, 9 * 5, I18n.format(player, "lobby.inventory.npcgames.info", (Object) game));
-        TimeGameStats timeGameStats = TimeSpigotAPI.getInstance().getTimeGameStatsManager().getTimeGameStats(game);
-
-        setGlassConent(inventory);
-
-        inventory.setItem(20, new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.info.item.players")).setLore(I18n.formatLines(player, "lobby.inventory.npcgames.info.lore.players", timeGameStats.getUniquePlayers(), CloudAPI.getInstance().getCloudServiceGroupManager().getServiceGroupByName(game).getOnlinePlayerCount())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzUwN2Q2ZGU2MzE4MzhlN2E3NTcyMGU1YjM4ZWYxNGQyOTY2ZmRkODQ4NmU3NWQxZjY4MTJlZDk5YmJjYTQ5OSJ9fX0").build());
-        inventory.setItem(22, new ItemManager(Material.KNOWLEDGE_BOOK, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.info.item.info")).setLore(I18n.formatLines(player, "game.explain." + game.toLowerCase())).build());
-        inventory.setItem(24, new ItemManager(Material.PAPER, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcgames.info.item.last_update")).setLore(I18n.formatLines(player, "lobby.inventory.npcgames.info.lore.last_update", timeGameStats.getLastPatchLink())).build());
+        inventory.setItem(42, new ItemManager(Material.PHANTOM_MEMBRANE).setDisplayName(I18n.format(player, "lobby.inventory.navigator.item.shop")).setCustomModleData(2).build());
 
         player.openInventory(inventory);
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);
@@ -115,7 +82,7 @@ public class InventoryManager {
 
         for (Patch patch : LobbySystem.getInstance().getPatchManager().getPatches()) {
             inventory.addItem(new ItemManager(Material.WRITTEN_BOOK, 1).setDisplayName(I18n.format(player, "lobby.inventory.npcpatches.item", patch.getPatchId()))
-                    .setBookTitle("Patch Note #" + patch.getPatchId()).setBookAuthor("TimeNation System").addBookPage(I18n.format(player, "lobby.inventory.npcpatches.item", patch.getPatchId()) + "\n §8» §7" + patch.getPatchTitle() + "§r\n \n" + patch.getPatchDescription().replace("/m", "\n")).addBookPage(" \n \n \n \n    Link zum Patch: \n" + patch.getPatchLink())
+                    .setBookTitle("Patch Note #" + patch.getPatchId()).setBookAuthor("TimeNation System").addBookPage(I18n.format(player, "lobby.inventory.npcpatches.item", patch.getPatchId()) + "\n §8» §7" + patch.getPatchTitle() + "§r\n \n" + patch.getPatchDescription().replace("/m", "\n")).addBookPage(" \n \n \n \n    " + I18n.format(player, "lobby.inventory.npcpatches.item.patch") + " \n" + patch.getPatchLink())
                     .build());
             System.out.println(patch.getPatchDescription());
         }
@@ -124,16 +91,50 @@ public class InventoryManager {
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);
     }
 
-    public void openNPC1vsBotInventory(Player player) {
-        Inventory inventory = Bukkit.createInventory(null, 9 * 5, I18n.format(player, "lobby.inventory.npc1vsbot"));
+    public void openLobbySwitcherInventory(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 9 * 3, I18n.format(player, "lobby.inventory.lobbyswitcher"));
 
-        setGlassConent(inventory);
+        for (int i = 0; i < 10; i++) {
+            inventory.setItem(i, new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build());
+        }
 
-        for (ICloudService iCloudService : CloudAPI.getInstance().getCloudServiceManager().getCloudServicesByGroupName("BotPvP")) {
-            if (iCloudService.getState().equals(ServiceState.VISIBLE)) {
-                inventory.addItem(new ItemManager(Material.PLAYER_HEAD, 1).setDisplayName(TimeSpigotAPI.getInstance().getColorAPI().process("<SOLID:2267d6>» BotPvP-" + iCloudService.getServiceNumber())).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2FiNTI3ZDE5Nzg1MTE3YzZhN2I2NjU1M2M2ZjBlMjg3MzU3NjNhM2JlNDExM2ZjYmNhNmM0N2UzNmI0NzViMCJ9fX0=").build());
+        for (int i = 17; i < 27; i++) {
+            inventory.setItem(i, new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build());
+        }
+
+        for (ICloudService iCloudService : CloudAPI.getInstance().getCloudServiceManager().getCloudServicesByGroupName("Lobby")) {
+            switch (iCloudService.getState()) {
+                case VISIBLE -> {
+                    if (iCloudService.getOnlineCount() == 0) {
+                        inventory.addItem(new ItemManager(Material.MANGROVE_BOAT, 1).setDisplayName(I18n.format(player, "lobby.inventory.lobbyswitcher.item.lobby", (Object) iCloudService.getName())).setLore(I18n.formatLines(player, "lobby.inventory.lobbyswitcher.item.lore", iCloudService.getOnlineCount())).build());
+                    } else {
+                        inventory.addItem(new ItemManager(Material.MANGROVE_CHEST_BOAT, iCloudService.getOnlineCount()).setDisplayName(I18n.format(player, "lobby.inventory.lobbyswitcher.item.lobby", (Object) iCloudService.getName())).setLore(I18n.formatLines(player, "lobby.inventory.lobbyswitcher.item.lore", iCloudService.getOnlineCount())).build());
+                    }
+                }
+                case STARTING -> inventory.addItem(new ItemManager(Material.BARRIER, 1).setCustomModleData(8).setDisplayName(I18n.format(player, "lobby.inventory.lobbyswitcher.item.lobby.starting", (Object) iCloudService.getName())).build());
             }
         }
+
+        player.openInventory(inventory);
+        player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);
+    }
+
+    public void openChangeLanguageInventory(Player player) {
+        Inventory inventory = Bukkit.createInventory(null, 9 * 3, I18n.format(player, "lobby.inventory.language"));
+
+        for (int i = 0; i < 9; i++) {
+            inventory.setItem(i, new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build());
+        }
+
+        for (int i = 18; i < 27; i++) {
+            inventory.setItem(i, new ItemManager(Material.BLACK_STAINED_GLASS_PANE, 1).setDisplayName(" ").build());
+        }
+
+        inventory.setItem(4, new ItemManager(Material.PLAYER_HEAD, 1).setSkullOwner(I18n.format(player, "language.skull")).setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) I18n.format(player, "language.name"))).build());
+
+        inventory.setItem(11, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWU3ODk5YjQ4MDY4NTg2OTdlMjgzZjA4NGQ5MTczZmU0ODc4ODY0NTM3NzQ2MjZiMjRiZDhjZmVjYzc3YjNmIn19fQ==").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "Deutsch")).build());
+        inventory.setItem(13, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Q5MTQ1Njg3N2Y1NGJmMWFjZTI1MWU0Y2VlNDBkYmE1OTdkMmNjNDAzNjJjYjhmNGVkNzExZTUwYjBiZTViMyJ9fX0=").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "English")).build());
+        inventory.setItem(15, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTBjMjMwNTVjMzkyNjA2ZjdlNTMxZGFhMjY3NmViZTJlMzQ4OTg4ODEwYzE1ZjE1ZGM1YjM3MzM5OTgyMzIifX19").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "Danmark")).build());
 
         player.openInventory(inventory);
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);

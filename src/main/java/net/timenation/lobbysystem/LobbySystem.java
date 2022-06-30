@@ -1,5 +1,6 @@
 package net.timenation.lobbysystem;
 
+import eu.thesimplecloud.api.CloudAPI;
 import lombok.Getter;
 import net.timenation.lobbysystem.listener.InventoryClickListener;
 import net.timenation.lobbysystem.listener.LobbyProtection;
@@ -36,6 +37,16 @@ public final class LobbySystem extends JavaPlugin {
         pluginManager.registerEvents(new PlayerInteractListener(), this);
         pluginManager.registerEvents(new InventoryClickListener(), this);
         pluginManager.registerEvents(new LobbyProtection(), this);
+
+        Bukkit.getScheduler().runTaskTimer(instance, () -> {
+            int players = CloudAPI.getInstance().getCloudServiceGroupManager().getProxyGroupByName("Proxy").getOnlinePlayerCount();
+            int slots = CloudAPI.getInstance().getCloudServiceGroupManager().getProxyGroupByName("Proxy").getMaxPlayers();
+
+            Bukkit.getOnlinePlayers().forEach(current -> {
+                current.setLevel(players);
+                current.setExp((float)players / (float)slots > 1 ? 1  : (float)players / (float)slots);
+            });
+        },0, 5);
     }
 
     public static LobbySystem getInstance() {

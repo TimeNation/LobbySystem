@@ -1,9 +1,7 @@
 package net.timenation.lobbysystem.listener;
 
-import net.timenation.timespigotapi.TimeSpigotAPI;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -36,7 +34,9 @@ public class LobbyProtection implements Listener {
             event.setCancelled(true);
         }
 
-        if(event.getClickedBlock() != null && event.getClickedBlock().getType().equals(Material.OAK_BUTTON)) return;
+        if(event.getClickedBlock() != null) {
+            if(event.getClickedBlock().getType().equals(Material.STONE_BUTTON) || event.getClickedBlock().getType().equals(Material.ACACIA_TRAPDOOR) || event.getClickedBlock().getType().equals(Material.BIRCH_TRAPDOOR)) event.setCancelled(true);
+        }
     }
 
     @EventHandler

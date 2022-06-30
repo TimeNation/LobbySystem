@@ -19,6 +19,8 @@ public class PlayerInteractListener implements Listener {
         if(event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             switch (event.getItem().getType()) {
                 case COMPASS, HONEYCOMB, CAULDRON, TOTEM_OF_UNDYING, END_PORTAL_FRAME -> LobbySystem.getInstance().getInventoryManager().openNavigatorInventory(player);
+                case FURNACE_MINECART -> LobbySystem.getInstance().getInventoryManager().openLobbySwitcherInventory(player);
+                case PLAYER_HEAD -> LobbySystem.getInstance().getInventoryManager().openChangeLanguageInventory(player);
             }
         }
     }
