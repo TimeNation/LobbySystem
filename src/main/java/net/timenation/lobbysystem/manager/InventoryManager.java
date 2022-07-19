@@ -133,8 +133,8 @@ public class InventoryManager {
         inventory.setItem(4, new ItemManager(Material.PLAYER_HEAD, 1).setSkullOwner(I18n.format(player, "language.skull")).setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) I18n.format(player, "language.name"))).build());
 
         inventory.setItem(11, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWU3ODk5YjQ4MDY4NTg2OTdlMjgzZjA4NGQ5MTczZmU0ODc4ODY0NTM3NzQ2MjZiMjRiZDhjZmVjYzc3YjNmIn19fQ==").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "Deutsch")).build());
-        inventory.setItem(13, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Q5MTQ1Njg3N2Y1NGJmMWFjZTI1MWU0Y2VlNDBkYmE1OTdkMmNjNDAzNjJjYjhmNGVkNzExZTUwYjBiZTViMyJ9fX0=").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "English")).build());
-        inventory.setItem(15, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTBjMjMwNTVjMzkyNjA2ZjdlNTMxZGFhMjY3NmViZTJlMzQ4OTg4ODEwYzE1ZjE1ZGM1YjM3MzM5OTgyMzIifX19").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "Danmark")).build());
+        inventory.setItem(15, new ItemManager(Material.PLAYER_HEAD).setSkullOwner("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2Q5MTQ1Njg3N2Y1NGJmMWFjZTI1MWU0Y2VlNDBkYmE1OTdkMmNjNDAzNjJjYjhmNGVkNzExZTUwYjBiZTViMyJ9fX0=").setDisplayName(I18n.format(player, "lobby.inventory.language.item", (Object) "English")).build());
+
 
         player.openInventory(inventory);
         player.playSound(player.getLocation(), Sound.ENTITY_ARROW_SHOOT, 100, 2);

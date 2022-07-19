@@ -2,6 +2,7 @@ package net.timenation.lobbysystem.utils;
 
 import eu.thesimplecloud.api.CloudAPI;
 import net.timenation.lobbysystem.LobbySystem;
+import net.timenation.lobbysystem.listener.PatchNPCListener;
 import net.timenation.lobbysystem.manager.ServerInventory;
 import net.timenation.timespigotapi.TimeSpigotAPI;
 import net.timenation.timespigotapi.manager.language.I18n;
@@ -42,6 +43,7 @@ public class NPCs implements Listener {
         new ServerInventory(stageBattleNPC, "StageBattle", "16de37", "49c45d");
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
+        Bukkit.getPluginManager().registerEvents(new PatchNPCListener(patchnotesNPC.getNpc()), plugin);
     }
 
     @EventHandler

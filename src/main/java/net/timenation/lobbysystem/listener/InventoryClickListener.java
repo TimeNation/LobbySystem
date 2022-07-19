@@ -57,6 +57,21 @@ public class InventoryClickListener implements Listener {
                 case BARRIER -> player.playSound(player.getLocation(), Sound.BLOCK_CHAIN_STEP, 10, 0);
             }
         }
+
+        if (event.getView().getTitle().equals(I18n.format(player, "lobby.inventory.language"))) {
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(I18n.format(player, "lobby.inventory.language.item", (Object) "English"))) {
+                var timePlayer = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player);
+                timePlayer.setLanguage("en");
+                TimeSpigotAPI.getInstance().getTimePlayerManager().updateTimePlayer(timePlayer);
+                player.closeInventory();
+            }
+            if (event.getCurrentItem().getItemMeta().getDisplayName().equals(I18n.format(player, "lobby.inventory.language.item", (Object) "Deutsch"))) {
+                var timePlayer = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player);
+                timePlayer.setLanguage("de");
+                TimeSpigotAPI.getInstance().getTimePlayerManager().updateTimePlayer(timePlayer);
+                player.closeInventory();
+            }
+        }
     }
 
     private void teleportPlayer(Player player, Location location, String translateKey) {
